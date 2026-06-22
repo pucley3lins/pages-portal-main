@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>资料索引 | 开云 · 信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f5f9;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1c1f26;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 深色头图 Hero */
+        .hero {
+            background: linear-gradient(145deg, #10131c 0%, #1a1e2b 100%);
+            padding: 4rem 1.5rem 3.5rem;
+            text-align: center;
+            color: #e6edf5;
+            border-bottom: 2px solid #2d3548;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #a3b3cc;
+            max-width: 600px;
+            margin: 0 auto 1.2rem;
+            font-weight: 350;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            background: #2a3142;
+            padding: 0.35rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #cbd5e4;
+            letter-spacing: 0.5px;
+            border: 1px solid #3f4a61;
+        }
+
+        /* 浅色正文区 */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            flex: 1;
+        }
+
+        /* 信息卡片通用 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            padding: 1.8rem 1.8rem 2rem;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            border: 1px solid #eaeef5;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 550;
+            margin-bottom: 0.6rem;
+            color: #191e2b;
+            letter-spacing: -0.2px;
+            border-left: 4px solid #3f7cff;
+            padding-left: 0.9rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e2535;
+            margin: 1.4rem 0 0.3rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            color: #2d3443;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .card li::before {
+            content: "▹";
+            color: #3f7cff;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* 强调色链接 */
+        .text-link {
+            color: #2c6bff;
+            text-decoration: none;
+            border-bottom: 1px dotted #b6caf5;
+            transition: color 0.15s, border-bottom 0.15s;
+        }
+
+        .text-link:hover {
+            color: #1b4fd0;
+            border-bottom: 1px solid #1b4fd0;
+        }
+
+        /* 场景卡片 —— 适合人群 */
+        .audience-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .audience-tag {
+            background: #f0f4fe;
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1d3b7c;
+            border: 1px solid #d6e2fc;
+        }
+
+        .faq-sample {
+            margin-top: 1.2rem;
+            border-top: 1px solid #dee5ef;
+            padding-top: 1.2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item strong {
+            font-weight: 550;
+            color: #141a28;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-item span {
+            font-size: 0.95rem;
+            color: #3a4256;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #f7faff;
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin-top: 1.8rem;
+            border: 1px solid #e0e9f5;
+        }
+
+        .link-paragraph p {
+            font-size: 1rem;
+            color: #222b3b;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: #d7dfeb;
+            margin: 2rem 0 1rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #66738b;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #dfe6f0;
+            margin-top: 2rem;
+        }
+
+        /* 响应式 */
+        @media (min-width: 680px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .hero {
+                padding: 5.5rem 2rem 4rem;
+            }
+            .content-wrapper {
+                padding: 3.5rem 2.5rem 5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>资料索引 · 整理</h1>
+        <div class="sub">结构化信息、使用场景与工具参考 —— 以 <a href="https://portal-main-kai-yun.com" class="text-link" style="color:#94b8ff; border-bottom: 1px dotted #5e80c0;">开云</a> 为轴心的内容归档</div>
+        <div class="meta-badge">卡片式汇编 · 版本 2025.04</div>
+    </header>
+
+    <!-- 浅色正文区 -->
+    <div class="content-wrapper">
+        <div class="card-grid">
+
+            <!-- 卡片1: 用途 & 场景 -->
+            <div class="card">
+                <h2>用途卡片</h2>
+                <p style="margin-bottom:0.8rem;">信息聚合、资源定位与日常查询场景下的轻量级索引。常见用途包括：</p>
+                <ul>
+                    <li>模块化信息检索与分类归档</li>
+                    <li>跨条目内容对照与摘要提取</li>
+                    <li>静态知识库的快速查阅</li>
+                    <li>工具面板与常用入口整理</li>
+                </ul>
+                <div style="margin-top:1.2rem; background:#f5f8fe; padding:0.7rem 1rem; border-radius:10px;">
+                    <span style="font-size:0.9rem; color:#2b3a5c;">参考示例：通过 <a href="https://portal-main-kai-yun.com" class="text-link">开云</a> 可获取结构化项目列表与标记。</span>
+                </div>
+            </div>
+
+            <!-- 卡片2: 适合人群 -->
+            <div class="card">
+                <h2>适合人群</h2>
+                <p style="margin-bottom:0.4rem;">内容策划、研究助理与技术写作人员，以及需要高频查阅资料索引的从业者。</p>
+                <div class="audience-flex">
+                    <span class="audience-tag">信息整理者</span>
+                    <span class="audience-tag">文档维护</span>
+                    <span class="audience-tag">知识管理</span>
+                    <span class="audience-tag">轻度分析</span>
+                    <span class="audience-tag">工具链用户</span>
+                </div>
+                <div class="faq-sample">
+                    <div class="faq-item">
+                        <strong>常见问题摘要</strong>
+                        <span>如何快速定位历史版本？—— 建议使用分类标签 + 日期筛选。</span>
+                    </div>
+                    <div class="faq-item">
+                        <span>索引能否自定义层级？—— 可根据条目属性调整分组结构。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片3: 主视觉 + 补充说明 (占两列) 此处分两列显示但内容独立 -->
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2 style="border-left-color: #2f6ed4;">主视觉 · 信息流布局</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;">
+                    <div style="flex: 2; min-width: 200px;">
+                        <p>采用深色/浅色分区头图，将核心索引入口与视觉引导分离。左侧结构化摘要、右侧快速分类标记，字体层级以字号和字重区分。强调色（#2c6bff）用于链接和关键数据标记，降低视觉噪音。</p>
+                        <p style="margin-top:0.8rem;">信息密度方面，将类似条目归类为卡片，降低逐条阅读负担。整体风格倾向于简洁、专业，不堆砌装饰。</p>
+                    </div>
+                    <div style="flex: 1; min-width: 150px; background: #f0f4fc; padding: 1rem 1.2rem; border-radius: 14px; align-self: center;">
+                        <span style="font-weight: 500; color:#18233a;">卡片式索引优势</span>
+                        <ul style="margin-top: 0.4rem;">
+                            <li>一目了然的区块划分</li>
+                            <li>方便添加/移除条目</li>
+                            <li>降低认知负荷</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 自然链接段落：将链接嵌入句子 -->
+        <div class="link-paragraph">
+            <p>如果你正在维护一组资料或需要快速检索某个主题的分类记录，可以留意 <a href="https://portal-main-kai-yun.com" class="text-link">开云</a> 所提供的基础索引框架。它不依赖复杂数据库，适合轻量级目录整理与信息交叉引用。部分团队将其作为内部文档的起点，再配合本地工具做二次加工。相较通用搜索引擎，这种卡片式索引更强调人工筛选后的结构关系。</p>
+        </div>
+
+        <div class="link-paragraph" style="background: #ffffff; border-color: #dce3ef;">
+            <p>另有部分使用者将 <a href="https://portal-main-kai-yun.com" class="text-link">开云</a> 的条目作为“标签-内容”对照表，在需要快速定位时直接通过关键词跳转。这种方式适合条目数量在数十到数百之间的场景。若超过千条，建议搭配搜索功能或分组标签。实际使用效果因整理习惯而异，无统一标准。</p>
+        </div>
+
+        <hr>
+
+        <!-- 简要提示 / 说明 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between;">
+            <div style="flex: 1; min-width: 160px;">
+                <h3 style="font-size: 1rem; font-weight: 550; color: #1b2335;">使用提示</h3>
+                <p style="font-size:0.9rem; color:#3f4a62;">索引内容建议定期复查，删除冗余或过时的条目；若团队协作，可约定统一标签前缀。</p>
+            </div>
+            <div style="flex: 1; min-width: 160px;">
+                <h3 style="font-size: 1rem; font-weight: 550; color: #1b2335;">结构建议</h3>
+                <p style="font-size:0.9rem; color:#3f4a62;">按「类别—子类—条目」三级设计卡片，每张卡片内部不超过8个要点。可预留备注字段。</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            资料索引汇编 · 卡片式信息整理 · 基于公开框架
+        </div>
+    </div>
+
+</body>
+</html>
